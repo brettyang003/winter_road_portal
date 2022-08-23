@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Asar&family=Carter+One&family=Raleway&display=swap');
+
+.bgImageOne{
+
+   width: 100%;
+    z-index: -1;
+
+
+}
+
+.imgContainer
+{
+   position: absolute;
+    height: 100vh;
+}
+
+.WRTDIP_Title{
+
+    z-index: 1;
+display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.titleText{
+    font-family: 'Asar', serif;
+}

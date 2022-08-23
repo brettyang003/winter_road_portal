@@ -77,9 +77,7 @@ const NavigationBar = () => {
           )}
         </Menu>
       </Layout.Header>
-      <Layout.Content>
-        <br />
-      </Layout.Content>
+      <Layout.Content></Layout.Content>
     </Layout>
   );
 };
