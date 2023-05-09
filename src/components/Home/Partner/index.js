@@ -10,7 +10,7 @@ import "./styles.css";
 const Partner = ({ props }) => {
   return (
     <div className="partnerPage">
-      <Typography className="partnerPageTitleText">Partner</Typography>
+      <Typography className="partnerPageTitleText">Partners</Typography>
       <div className="partnerOverallContainer">
         {props.map((content) => (
           <PartnerItem key={content.id} props={content} />

@@ -60,7 +60,7 @@ const BackGroundImageOne = () => (
 );
 
 const CarouselHome = () => (
-  <Carousel className="imgContainer" style={{textAlign: "center"}}>
+  <Carousel className="imgContainer" autoplay={true} style={{textAlign: "center"}}>
     <div>
       <div
         style={{

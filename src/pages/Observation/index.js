@@ -1,4 +1,5 @@
-import bgImage from "../../assets/homebg_3.png";
+import ObservationFirst from "../../assets/group_icon.png";
+
 import DataTable from "../../components/DataTable";
 import CoverBanner from "../../components/Global/CoverBanner";
 import ProjectBanner from "../../components/Projects/ProjectBanner";
@@ -8,8 +9,8 @@ function Observation() {
   const BannerContents = [
     {
       id: 1,
-      image: bgImage,
-      title: "Thank you for contributing to a better North",
+      image: ObservationFirst,
+      title: "Winter Road and Trail Watch",
       content: "Feel free to export the data to Excel format ",
       bgColor: "white",
     },
@@ -21,7 +22,7 @@ function Observation() {
       <div className="observationIframeContainer">
         <iframe
           className="observationIframe"
-          src="https://survey123.arcgis.com/share/b0133ca727c249c1825e1c637298be74"
+          src="https://arcg.is/0rOGWD"
         ></iframe>
       </div>
     </div>

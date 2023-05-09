@@ -1,4 +1,5 @@
-import bgImage from "../../assets/homebg_3.png";
+import TransportationFirst from "../../assets/big_data_icon.png";
+
 import DataTable from "../../components/DataTable";
 import CoverBanner from "../../components/Global/CoverBanner";
 import ProjectBanner from "../../components/Projects/ProjectBanner";
@@ -7,8 +8,8 @@ function Transportation() {
   const BannerContents = [
     {
       id: 1,
-      image: bgImage,
-      title: "Here are the data collected",
+      image: TransportationFirst,
+      title: "Northern Transportation Network Database",
       content: "Feel free to export the data to Excel format ",
       bgColor: "white",
     },
