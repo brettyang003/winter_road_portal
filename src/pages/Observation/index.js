@@ -1,7 +1,7 @@
 import ObservationFirst from "../../assets/group_icon.png";
 
 import DataTable from "../../components/DataTable";
-import CoverBanner from "../../components/Global/CoverBanner";
+import CoverBanner from "../../components/Global/CoverBanner/CoverBanner";
 import ProjectBanner from "../../components/Projects/ProjectBanner";
 import SubSectionBanner from "../../components/SubSectionBanner";
 import "./styles.css";

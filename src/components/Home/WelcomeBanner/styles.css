@@ -1,33 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Abel&display=swap');
 
-.welcomeBannerContainer
-{
-
-    display: flex;
-    background-color: #F7FAEF;
-    height: 70vh;
-    flex-direction: column;
-    align-content: space-around;
-    align-items: center;
-    justify-content: center;
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position: center;
-
+.welcomeContainer{
+    background-color: rgb(54, 77, 119);
+    height: 94vh;
+    padding: 6%;
 }
 
-
-.welcomeBannerTitle{
-    font-family: 'Abel', sans-serif;
-    font-size: 4vh;
-    color: #F7FAEF;
-    text-align: left;
-    padding-bottom: 30px;
-    padding-top: 30px;
+.welcomeTitle{
+    color:  white;
+}
+.welcomeText{
+    font-size: 20px;
+    color: white;
 }
 
-.welcomeBannerText
-{
-    width: 40%;
-    text-align: left;
+.welcomeCarousel{
+    height: 80%;
 }

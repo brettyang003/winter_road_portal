@@ -1,17 +1,18 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "./index.css";
-import App from "./App";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import "antd/dist/antd.min.css";
 import "antd/dist/antd.variable.min.css";
 import NavigationBar from "./components/Global/NavigationBar";
-import Home from "./pages/Home";
+import Home from "./pages/Home/Home";
 import Footer from "./components/Global/Footer";
-import Projects from "./pages/Projects";
+import Projects from "./pages/Projects/Projects";
 import About from "./pages/About";
 import Transportation from "./pages/Transportation";
 import Observation from "./pages/Observation";
+
 ReactDOM.render(
   <div>
     <Router>

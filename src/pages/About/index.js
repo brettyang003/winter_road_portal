@@ -9,7 +9,7 @@ import Amy from "../../assets/Amy.png";
 import Moein from "../../assets/Moein.png";
 import Vivienne from "../../assets/Vivienne.png";
 
-import CoverBanner from "../../components/Global/CoverBanner";
+import CoverBanner from "../../components/Global/CoverBanner/CoverBanner";
 import Team from "../../components/Team";
 function About() {
   const TeamMemberInfo = [[

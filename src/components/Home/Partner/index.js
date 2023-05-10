@@ -1,22 +1,22 @@
 import React from "react";
-import { Grid, Layout, Menu, Typography } from "antd";
-import { Link } from "react-router-dom";
-import CanadaMap from "../../../assets/canada_map.png";
-import titleImage from "../../../assets/homebg_3.png";
+import {Typography} from "antd";
+import { Container, Row, Col } from "react-bootstrap";
 
 import PartnerItem from "./PartnerItem";
 import "./styles.css";
 
 const Partner = ({ props }) => {
   return (
-    <div className="partnerPage">
+    <Container class="row justify-content-center">
       <Typography className="partnerPageTitleText">Partners</Typography>
-      <div className="partnerOverallContainer">
+      <Row className="justify-content-md-center">
         {props.map((content) => (
-          <PartnerItem key={content.id} props={content} />
+          <Col xs lg="3" align="center">
+            <img src={content.image} className="img-fluid" width="150" />
+          </Col>
         ))}
-      </div>
-    </div>
+      </Row>
+    </Container>
   );
 };
 
