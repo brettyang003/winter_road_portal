@@ -11,7 +11,7 @@ const Partner = ({ props }) => {
       <Typography className="partnerPageTitleText">Partners</Typography>
       <Row className="justify-content-md-center">
         {props.map((content) => (
-          <Col xs lg="3" align="center">
+          <Col xs lg="3" align="center" className="p-3">
             <img src={content.image} className="img-fluid" width="150" />
           </Col>
         ))}

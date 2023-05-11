@@ -6,13 +6,11 @@ import "./styles.css";
 
 const Feature = ({ props }) => {
   return (
-    <Container>
-      <Row
-        className="justify-content-md-center"
-      >
+    <Container className="featureContainer" fluid>
+      <Row className="d-flex justify-content-center featureRow">
         <Typography className="featurePageTitleText ">Features</Typography>
         {props.map((content) => (
-          <Col xs lg="3">
+          <Col xs lg="3" className="d-flex justify-content-center">
             <FeatureItem key={content.id} props={content} />
           </Col>
         ))}

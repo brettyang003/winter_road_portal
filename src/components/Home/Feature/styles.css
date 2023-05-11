@@ -1,9 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Abel&display=swap");
 
-.featureOverallContainer {
-
-  display: flex;
-  height: 60vh;
+.featureContainer {
+  background-color: rgb(244, 245, 250);
 }
 
 .featurePage {
@@ -15,9 +13,16 @@
 
 }
 
+.featureRow{
+  width: 90%;
+  margin: auto;
+  padding: 3vh;
+}
+
+
 .featurePageTitleText {
-  font-size: 3rem;
-  font-family: "Abel", sans-serif;
+  font-size: 3vw;
+  font-family: 'Roboto', sans-serif;
   color: #0e2959;
   text-align: center;
   padding: 5%;

@@ -1,9 +1,10 @@
+import { Container, Row, Col } from "react-bootstrap";
 import ProjectFirst from "../../assets/smartphone_icon_colour.png";
 import ProjectSecond from "../../assets/online_survey_icon.png";
 import ProjectThird from "../../assets/ice_road_icon.png";
-
 import CoverBanner from "../../components/Global/CoverBanner/CoverBanner";
-import ProjectBanner from "../../components/Projects/ProjectBanner";
+import ProjectItem from "../../components/Projects/ProjectBanner/ProjectItem";
+
 function Projects() {
   const BannerContents = [
     {
@@ -33,15 +34,15 @@ function Projects() {
     },
   ];
   return (
-    <div>
+    <Container className="p-0" fluid>
       <CoverBanner title="Projects" />
-
-      {BannerContents.map((content) => (
-        // <TemplateBanner key={content.id} props={content} />
-        <ProjectBanner  key={content.id} props={content} />
-      ))}
-
-    </div>
+      <div className="mt-2 mb-5">
+        {BannerContents.map((content) => (
+          // <TemplateBanner key={content.id} props={content} />
+          <ProjectItem key={content.id} props={content} />
+        ))}
+      </div>
+    </Container>
   );
 }
 

@@ -2,7 +2,7 @@ import ObservationFirst from "../../assets/group_icon.png";
 
 import DataTable from "../../components/DataTable";
 import CoverBanner from "../../components/Global/CoverBanner/CoverBanner";
-import ProjectBanner from "../../components/Projects/ProjectBanner";
+import ProjectBanner from "../../components/Projects/ProjectBanner/ProjectItem";
 import SubSectionBanner from "../../components/SubSectionBanner";
 import "./styles.css";
 function Observation() {

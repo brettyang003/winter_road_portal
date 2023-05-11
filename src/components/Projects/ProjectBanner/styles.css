@@ -1,43 +1,60 @@
 @import url("https://fonts.googleapis.com/css2?family=Abel&display=swap");
 
-.projectBannerContainer {
-  display: flex;
-  height: 40vh;
-  background-color: white;
-  flex-direction: row;
-  align-items: center;
-
+.projectRow{
+  margin-top: 2vh;
+  padding: 5vh;
+  width: 70%;
+  margin: auto;
+}
+.projectRow:hover{
+  background-color: rgb(238, 238, 240);
+}
+.projectItemTitle{
+  font-family: 'Roboto', sans-serif;
+  color: rgb(56, 80, 126);
+  font-size: 5vh;
 }
 
-.projectBannerImage {
-  width: 200px;
-  height: 200px;
-  border-radius: 100px;
-  margin-left: 180px;
+.projectItemText{
+  margin-top: 1.4vh;
+  font-family: 'Roboto', sans-serif;
+  font-size: 2.5vh;
 }
 
-.projectBannerTitle {
-  font-size: 2rem;
-  font-family: "Abel", sans-serif;
-  margin-top: 20px;
-  color: #0e2959;
+.projectLineBreak{
+  border-bottom: 0.8vh solid rgb(70, 178, 227);
+  width: 10%;
+  margin-left: 1%;
+  padding-top: 1vh;
 }
 
-.projectBannerText {
-  font-family: "Abel", sans-serif;
-  width: 40%;
-  text-align: left;
-  font-size: 1rem;
-  padding-top: 20px;
-  padding-bottom: 30px;
+.projectItemButton {
+  background-color: #FFFFFF;
+  border: 1px solid rgb(209,213,219);
+  border-radius: .5rem;
+  box-sizing: border-box;
+  color: #111827;
+  font-family: "Inter var",ui-sans-serif,system-ui,-apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+  font-size: .875rem;
+  font-weight: 600;
+  line-height: 1.25rem;
+  padding: .75rem 1rem;
+  text-align: center;
+  text-decoration: none #D1D5DB solid;
+  text-decoration-thickness: auto;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
 }
 
-.projectBannerImageContainer {
-  padding-top: 0px;
+.projectItemButton:hover {
+  color: white;
+  background-color: rgb(70, 178, 227);
+  border: none;
 }
 
-.projectBannerTextContainer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.projectItemButton:focus-visible {
+  box-shadow: none;
 }

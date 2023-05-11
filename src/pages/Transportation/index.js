@@ -2,7 +2,7 @@ import TransportationFirst from "../../assets/big_data_icon.png";
 
 import DataTable from "../../components/DataTable";
 import CoverBanner from "../../components/Global/CoverBanner/CoverBanner";
-import ProjectBanner from "../../components/Projects/ProjectBanner";
+import ProjectBanner from "../../components/Projects/ProjectBanner/ProjectItem";
 import SubSectionBanner from "../../components/SubSectionBanner";
 function Transportation() {
   const BannerContents = [

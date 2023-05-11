@@ -8,18 +8,15 @@
 }
 
 .featureBannerTitle {
-  font-size: 1rem;
-  font-family: "Abel", sans-serif;
-  margin-top: 20px;
-  color: #0e2959;
+  font-size: 3vh;
+  padding: 1vh;
+  font-family: 'Roboto', sans-serif;
+
 }
 
 .featureBannerText {
-  font-family: "Abel", sans-serif;
-  width: 60%;
-  text-align: left;
-  font-size: 1rem;
-  padding-top: 20px;
-  padding-bottom: 30px;
+  font-size: 2vh;
+  font-family: 'Roboto', sans-serif;
 }
+
 

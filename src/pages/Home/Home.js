@@ -19,7 +19,7 @@ import thirdPartners from "../../assets/UBC.png";
 import fourthPartners from "../../assets/UofA.png";
 import fifthPartners from "../../assets/GNWT.gif";
 import sixthPartners from "../../assets/NRC.png";
-import seventhPartners from "../../assets/CIRNAC.jpg";
+import seventhPartners from "../../assets/CIRNAC.png";
 
 import Partner from "../../components/Home/Partner";
 import Footer from "../../components/Global/Footer";
@@ -41,7 +41,7 @@ function Home() {
       title: "Climate Change Impacts on Northern Transportation Networks",
       content:
         "In the North, winter roads provide relatively inexpensive overland connection to the all-season road network, which in turn connects from remote to larger communities and the rest of Canada, much passenger and freight movements for remote Northern communities and resource sites occur during the winter road season. Climate change is impacting the surface quality of the winter roads, seasonal lengths, and freight schedule such as the movements of goods and services. ",
-      bgColor: "#F7FAEF",
+      bgColor: "rgb(244, 245, 250)",
     },
     {
       id: 3,
@@ -131,12 +131,6 @@ function Home() {
       image: seventhPartners,
       title: "Crown-Indigenous Relations and Northern Affairs Canada",
       url: "https://www.canada.ca/en/crown-indigenous-relations-northern-affairs.html",
-    },
-    {
-      id: 8,
-      image: bgImage,
-      title: "TBA",
-      url: "https://google.com",
     },
   ];
   
