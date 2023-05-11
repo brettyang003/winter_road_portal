@@ -9,7 +9,6 @@ import "./styles.css";
 const WelcomeBanner = () =>{
   return (
     <Container className="welcomeContainer" fluid>
-      <Container>
         <Row>
           <Col xs lg="4" className="text-center my-auto">
             <h2 className="welcomeTitle">
@@ -29,7 +28,6 @@ const WelcomeBanner = () =>{
             <CarouselHome />
           </Col>
         </Row>
-      </Container>
     </Container>
   );
 

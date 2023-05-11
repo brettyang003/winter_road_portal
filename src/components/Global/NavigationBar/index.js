@@ -20,11 +20,16 @@ const rightItems = [
 const menuItem = (i) => (
   <Menu.Item key={i.name}>
     {i.newTab ? (
-      <a href={i.link} target={"_blank"} rel={"noreferrer"}>
+      <a
+        href={i.link}
+        target={"_blank"}
+        rel={"noreferrer"}
+        className="menuLink"
+      >
         {i.name}
       </a>
     ) : (
-      <Link to={i.link}>
+      <Link to={i.link} className="menuLink">
         {i.icon} {i.name}
       </Link>
     )}
@@ -38,7 +43,7 @@ const NavigationBar = () => {
       {leftItems.map(menuItem)}
       <Menu.SubMenu
         key={"navbar-divider"}
-        style={{ flexGrow: 1, visibility: "hidden" }}
+        style={{ flexGrow: 1, visibility: "hidden"}}
       />
       {rightItems.map(menuItem)}
     </>
