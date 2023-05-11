@@ -45,16 +45,16 @@ const NavigationBar = () => {
   );
 
   return (
-    <Layout>
-      <Layout.Header>
+    <Layout style={{ background: "rgb(54, 76, 119)" }}>
+      <Layout.Header style={{ background: "rgb(54, 76, 119)" }}>
         <Menu
           mode={"horizontal"}
           theme={"dark"}
           disabledOverflow={true}
-          style={{ display: "flex" }}
+          style={{ display: "flex", background: "rgb(54, 76, 119)" }}
         >
           <Menu.Item
-            style={{ flexGrow: mobile && 1, background: "rgba(0,0,0,0)" }}
+            style={{ flexGrow: mobile && 1, background: "rgb(54, 76, 119)" }}
             key={"Home"}
           >
             <Link to={"/"}>

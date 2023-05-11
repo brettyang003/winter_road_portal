@@ -9,34 +9,15 @@
   justify-content: center;
 
 }
-
-.subSectionBannerImage {
-  width: 200px;
-  height: 200px;
-  border-radius: 100px;
-
-}
-
 .subSectionBannerTitle {
-  font-size: 2rem;
-  font-family: "Abel", sans-serif;
-  margin-top: 20px;
-  color: #0e2959;
-}
-
-.subSectionBannerText {
-  font-family: "Abel", sans-serif;
-  width: 40%;
-  text-align: left;
-  font-size: 1rem;
-  padding-top: 20px;
-  padding-bottom: 30px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 7vh;
+  color: rgb(56, 80, 126);
 }
 
 .subSectionBannerImageContainer {
   padding-top: 0px;
 }
-
 .subSectionBannerTextContainer {
   display: flex;
   flex-direction: column;

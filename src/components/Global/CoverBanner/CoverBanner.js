@@ -6,8 +6,9 @@ import "./styles.css";
 
 const CoverBanner = ({title}) => {
   return (
-    <Card className="bg-dark text-white coverBanner">
-      <Card.Img src={coverBannerBg} alt="Card image" className="coverImage"/>
+    <Card className="text-white coverBanner">
+      <div className="coverImageBanner"></div>
+      {/* <Card.Img src={coverBannerBg} alt="Card image" className="coverImage"/> */}
       <Card.ImgOverlay className="coverDiv">
         <div>
           <h1 className="coverTitle">{title}</h1>

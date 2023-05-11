@@ -1,20 +1,20 @@
-
-
-import bgImage from "../../assets/homebg_3.png";
-import TeamMember from "./TeamMember";
+import { Container,Row,Col } from "react-bootstrap";
+import TeamMember from "./TeamMember/TeamMemberItem";
 import "./styles.css";
-import { Typography } from "antd";
 function Team({teamName, teamMemberInfo}) {
-   
+  
   return (
-    <div className="teamTitle"> <Typography.Title style={{color: "#0e2959", paddingTop: "20px"}}>{teamName}</Typography.Title>
-    <div className="teamContainer">
-       
+    <Container className="teamContainer">
+      <div className="teamTitle">{teamName}</div>
+      <div className="teamLineBreak"></div>
+      <Row className="">
         {teamMemberInfo.map((content) => (
-        <TeamMember key={content.id} props={content} />
-      ))}
-    </div>
-    </div>
+          <Col xs lg="6">
+            <TeamMember key={content.id} props={content} />
+          </Col>
+        ))}
+      </Row>
+    </Container>
   );
 }
 

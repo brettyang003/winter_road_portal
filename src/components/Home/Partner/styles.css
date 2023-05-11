@@ -18,9 +18,9 @@
 
 
 .partnerPageTitleText {
-  font-size: 3rem;
-  font-family: "Abel", sans-serif;
-  color: #0e2959;
+  font-family: 'Roboto', sans-serif;
+  color: rgb(56, 80, 126);
+  font-size: 6.5vh;
   text-align: center;
 
   padding: 5%;

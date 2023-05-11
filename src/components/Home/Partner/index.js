@@ -1,14 +1,11 @@
 import React from "react";
-import {Typography} from "antd";
 import { Container, Row, Col } from "react-bootstrap";
-
-import PartnerItem from "./PartnerItem";
 import "./styles.css";
 
 const Partner = ({ props }) => {
   return (
     <Container class="row justify-content-center">
-      <Typography className="partnerPageTitleText">Partners</Typography>
+      <div className="partnerPageTitleText">Partners</div>
       <Row className="justify-content-md-center">
         {props.map((content) => (
           <Col xs lg="3" align="center" className="p-3">

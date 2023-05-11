@@ -1,4 +1,5 @@
 import { Space, Table, Tag } from "antd";
+import "./styles.css";
 import React from "react";
 const columns = [
   {
@@ -74,6 +75,6 @@ const data = [
   },
 ];
 
-const DataTable = () => <Table columns={columns} dataSource={data} />;
+const DataTable = () => <Table className = "dataTable" columns={columns} dataSource={data} />;
 
 export default DataTable;
