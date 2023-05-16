@@ -12,6 +12,7 @@ import Projects from "./pages/Projects/Projects";
 import About from "./pages/About";
 import Transportation from "./pages/Transportation";
 import Observation from "./pages/Observation";
+import Login from "./pages/Login/Login.js";
 
 ReactDOM.render(
   <div>
@@ -23,6 +24,7 @@ ReactDOM.render(
         <Route path="/about" element={<About />} exact />
         <Route path="/transportation" element={<Transportation />} exact />
         <Route path="/observation" element={<Observation />} exact />
+        <Route path="/login" element={<Login />} exact />
       </Routes>
       <Footer />
     </Router>
