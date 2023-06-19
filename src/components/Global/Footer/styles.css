@@ -2,14 +2,12 @@
 
 .footerContainer
 {
-
     display: flex;
     background-color: #001529;
     height: 10vh;
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-
 }
 
 

@@ -13,7 +13,7 @@ import About from "./pages/About";
 import Transportation from "./pages/Transportation";
 import Observation from "./pages/Observation";
 import Login from "./pages/Login/Login.js";
-
+import Map from "./components/Map/Map.jsx"
 ReactDOM.render(
   <div>
     <Router>
@@ -22,6 +22,7 @@ ReactDOM.render(
         <Route path="/" element={<Home />} exact />
         <Route path="/projects" element={<Projects />} exact />
         <Route path="/about" element={<About />} exact />
+        <Route path="/map" element={<Map />} exact />
         <Route path="/transportation" element={<Transportation />} exact />
         <Route path="/observation" element={<Observation />} exact />
         <Route path="/login" element={<Login />} exact />
