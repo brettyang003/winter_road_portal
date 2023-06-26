@@ -45,51 +45,54 @@ export default function loadData(weatherData,MapElement) {
             longitude: item.geometry.coordinates[0],
             latitude: item.geometry.coordinates[1],
           };
-          newPointGraphic = new Graphic({
-            symbol: {
-              type: "simple-marker",
-              color: "red",
-              size: "5px",
-            },
-            geometry: coordinates,
-            attributes: {
-              name: "New Point",
-              type: "Sample",
-            },
-            popupTemplate: popupTemplate,
-          });
+        if(coordinates.latitude > 60){
+            newPointGraphic = new Graphic({
+              symbol: {
+                type: "simple-marker",
+                color: "red",
+                size: "5px",
+              },
+              geometry: coordinates,
+              attributes: {
+                name: "New Point",
+                type: "Sample",
+              },
+              popupTemplate: popupTemplate,
+            });
 
-          graphicsLayer.add(newPointGraphic);
+            graphicsLayer.add(newPointGraphic);
+        }
+        
+    });
+    view.popup = new Popup({ view: view });
+    view.on("click", (event) => {
+        const clickedPoint = event.mapPoint;
+        const latitude = clickedPoint.latitude,
+        longitude = clickedPoint.longitude;
+        weatherData.current.forEach((item) => {
+        if (
+            isWithinRange(
+            item.geometry.coordinates[0],
+            longitude - 2,
+            longitude + 2
+            ) &&
+            isWithinRange(
+            item.geometry.coordinates[1],
+            latitude - 2,
+            latitude + 2
+            )
+        ) {
+            airTemperature = item.properties.air_temp;
+            newPointGraphic.popupTemplate.title = `Weather Details at ${
+            item.properties["stn_nam-value"]}`;
+            newPointGraphic.popupTemplate.content = `<b>Air Temperature:</b> ${airTemperature} °C `;
+        }
         });
-        view.popup = new Popup({ view: view });
-        view.on("click", (event) => {
-          const clickedPoint = event.mapPoint;
-          const latitude = clickedPoint.latitude,
-            longitude = clickedPoint.longitude;
-          weatherData.current.forEach((item) => {
-            if (
-              isWithinRange(
-                item.geometry.coordinates[0],
-                longitude - 2,
-                longitude + 2
-              ) &&
-              isWithinRange(
-                item.geometry.coordinates[1],
-                latitude - 2,
-                latitude + 2
-              )
-            ) {
-              airTemperature = item.properties.air_temp;
-              newPointGraphic.popupTemplate.title = `Weather Details at ${
-                item.properties["stn_nam-value"]}`;
-              newPointGraphic.popupTemplate.content = `<b>Air Temperature:</b> ${airTemperature} °C `;
-            }
-          });
-        });
-      });
-  });
+    });
+    });
+});
 }
 
 function isWithinRange(number, min, max) {
-  return number >= min && number <= max;
+return number >= min && number <= max;
 }
