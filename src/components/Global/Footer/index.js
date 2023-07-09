@@ -11,9 +11,11 @@ import "./styles.css";
 
 const UTSCLogo = () => {
   return (
-    <div id={"navbar-item-elcano-container"}>
+    <div id={"navbar-item-elcano-container"} style = {{marginLeft: "2%"}}>
       <img width={110} src={NavbarLogo} alt="logo" />
-      <div id="navbar-item-elcano-text">CL@UT</div>
+      <div id="navbar-item-elcano-text">
+        CL@UT
+      </div>
     </div>
   );
 };
@@ -21,14 +23,19 @@ const UTSCLogo = () => {
 const CopyRight = () => {
   const year = new Date().getFullYear(); // returns the current year
   return (
-    <Typography className="copyRightText">Copyright © {year} CL@UT</Typography>
+    <div style={{ margin: "auto", textAlign: "center" }}>
+      <Typography className="copyRightText">
+        Copyright © {year} CL@UT
+      </Typography>
+      <a href="#top"> Go to top</a>
+    </div>
   );
 };
 
 const MediaBox = () => {
   return (
     <>
-      <div className="mediaBox">
+      <div className="mediaBox" style={{ marginRight: "1%" }}>
         <Typography className="mediaBoxText">Follow us</Typography>
         <a href="http://twitter.com" target="_blank">
           <img style={{ width: "30px" }} src={twitter}></img>

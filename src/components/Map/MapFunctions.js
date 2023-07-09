@@ -2,9 +2,24 @@ import { loadModules } from "esri-loader";
 import { useEffect, useRef } from "react";
 
 export default function loadData(weatherData,MapElement) {
+  let mapLinks = [
+    "https://services1.arcgis.com/9NvE8jKNWWlDGsUJ/arcgis/rest/services/VLi_Web_Map_WFL1/FeatureServer/0",
+    "https://services1.arcgis.com/9NvE8jKNWWlDGsUJ/arcgis/rest/services/VLi_Web_Map_WFL1/FeatureServer/1",
+    "https://services1.arcgis.com/9NvE8jKNWWlDGsUJ/arcgis/rest/services/VLi_Web_Map_WFL1/FeatureServer/3",
+    "https://services1.arcgis.com/9NvE8jKNWWlDGsUJ/arcgis/rest/services/VLi_Web_Map_WFL1/FeatureServer/7",
+    "https://services1.arcgis.com/9NvE8jKNWWlDGsUJ/arcgis/rest/services/VLi_Web_Map_WFL1/FeatureServer/13",
+    "https://services1.arcgis.com/9NvE8jKNWWlDGsUJ/arcgis/rest/services/VLi_Web_Map_WFL1/FeatureServer/14",
+    "https://services1.arcgis.com/9NvE8jKNWWlDGsUJ/arcgis/rest/services/VLi_Web_Map_WFL1/FeatureServer/15",
+    "https://services1.arcgis.com/9NvE8jKNWWlDGsUJ/arcgis/rest/services/VLi_Web_Map_WFL1/FeatureServer/16",
+    "https://services1.arcgis.com/9NvE8jKNWWlDGsUJ/arcgis/rest/services/VLi_Web_Map_WFL1/FeatureServer/19",
+    "https://services1.arcgis.com/9NvE8jKNWWlDGsUJ/arcgis/rest/services/VLi_Web_Map_WFL1/FeatureServer/20",
+    "https://services1.arcgis.com/9NvE8jKNWWlDGsUJ/arcgis/rest/services/VLi_Web_Map_WFL1/FeatureServer/22",
+    "https://services1.arcgis.com/9NvE8jKNWWlDGsUJ/arcgis/rest/services/VLi_Web_Map_WFL1/FeatureServer/24",
+  ];
   loadModules(
     [
       "esri/views/MapView",
+      "esri/layers/FeatureLayer",
       "esri/layers/GraphicsLayer",
       "esri/Map",
       "esri/config",
@@ -15,7 +30,7 @@ export default function loadData(weatherData,MapElement) {
     {
       css: true,
     }
-  ).then(([MapView, GraphicsLayer, Map, esriConfig, Graphic, Popup, PopupTemplate]) => {
+  ).then(([MapView, FeatureLayer, GraphicsLayer, Map, esriConfig, Graphic, Popup, PopupTemplate]) => {
     esriConfig.apiKey =
       "AAPK523b3670e87d4504aa86c87ef22885f8B2U9Y_GAGwSmQV3HOq8d7NqRWn09tIR1BIMKvA6lf3581mq2wW2RuKOxPy75ccle";
     const map = new Map({ basemap: "arcgis-topographic" });
@@ -25,13 +40,21 @@ export default function loadData(weatherData,MapElement) {
       center: [-90, 45.027],
       zoom: 4,
     });
-
+    mapLinks.map((link) => {
+      const featureLayer = new FeatureLayer(
+        {url: link} , // Specify the URL of the feature layer
+      );
+      map.add(featureLayer);
+      }
+    );
+    
     const graphicsLayer = new GraphicsLayer();
     map.add(graphicsLayer);
     let url = `https://api.weather.gc.ca/collections/swob-realtime/items?&f=json`;
     fetch(url)
       .then((response) => response.json())
       .then((data) => {
+        console.log(data)
         let airTemperature;
         let newPointGraphic;
         weatherData.current = data.features;
