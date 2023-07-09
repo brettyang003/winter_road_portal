@@ -37,8 +37,8 @@ export default function loadData(weatherData,MapElement) {
     const view = new MapView({
       container: MapElement.current,
       map: map,
-      center: [-90, 45.027],
-      zoom: 4,
+      center: [-110, 68.027],
+      zoom: 4.5,
     });
     mapLinks.map((link) => {
       const featureLayer = new FeatureLayer(
