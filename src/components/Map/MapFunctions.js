@@ -40,13 +40,14 @@ export default function loadData(weatherData,MapElement) {
       center: [-110, 68.027],
       zoom: 4.5,
     });
-    mapLinks.map((link) => {
-      const featureLayer = new FeatureLayer(
-        {url: link} , // Specify the URL of the feature layer
-      );
-      map.add(featureLayer);
-      }
-    );
+
+    // mapLinks.map((link) => {
+    //   const featureLayer = new FeatureLayer(
+    //     {url: link} , // Specify the URL of the feature layer
+    //   );
+    //   map.add(featureLayer);
+    //   }
+    // );
     
     const graphicsLayer = new GraphicsLayer();
     map.add(graphicsLayer);
@@ -55,7 +56,7 @@ export default function loadData(weatherData,MapElement) {
       .then((response) => response.json())
       .then((data) => {
         console.log(data)
-        let airTemperature;
+        let snowDepth, airTemp, relativeHumidity, avgWindSpeed, retrievedTime, lastUpdatedTime;
         let newPointGraphic;
         weatherData.current = data.features;
          const popupTemplate = new PopupTemplate({
@@ -105,10 +106,19 @@ export default function loadData(weatherData,MapElement) {
             latitude + 2
             )
         ) {
-            airTemperature = item.properties.air_temp;
+            snowDepth = item.properties.snw_dpth;
+            airTemp = item.properties.air_temp;
+            relativeHumidity = item.properties.rel_hum;
+            avgWindSpeed = item.properties.avg_wnd_spd_10m_pst1hr;
+            retrievedTime = new Date(item.properties["date_tm-value"]);
+            lastUpdatedTime = retrievedTime.toLocaleString();
             newPointGraphic.popupTemplate.title = `Weather Details at ${
             item.properties["stn_nam-value"]}`;
-            newPointGraphic.popupTemplate.content = `<b>Air Temperature:</b> ${airTemperature} °C `;
+            newPointGraphic.popupTemplate.content = `<b>Snow Depth:</b> ${snowDepth}cm <br> <br>
+                                                    <b>Air Temperature:</b> ${airTemp} °C <br><br>
+                                                    <b>Relative Humidity:</b> ${relativeHumidity}% <br><br>
+                                                    <b>Average Wind Speed:</b> ${avgWindSpeed} km/h <br><br>
+                                                    <b>Last Updated:</b> ${lastUpdatedTime}<br><br> `;
         }
         });
     });
