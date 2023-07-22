@@ -1,21 +1,17 @@
 import { loadModules } from "esri-loader";
 import { useEffect, useRef } from "react";
+import {
+  citiesOfNunavut,
+  citiesOfNorthwestTerritories,
+  citiesOfYukon,
+  mapLinks,
+  northWestCoordinates,
+  nunavutCoordinates,
+  yukonCoordinates
+} from "./Data";
 
-export default function loadData(weatherData,MapElement) {
-  let mapLinks = [
-    "https://services1.arcgis.com/9NvE8jKNWWlDGsUJ/arcgis/rest/services/VLi_Web_Map_WFL1/FeatureServer/0",
-    "https://services1.arcgis.com/9NvE8jKNWWlDGsUJ/arcgis/rest/services/VLi_Web_Map_WFL1/FeatureServer/1",
-    "https://services1.arcgis.com/9NvE8jKNWWlDGsUJ/arcgis/rest/services/VLi_Web_Map_WFL1/FeatureServer/3",
-    "https://services1.arcgis.com/9NvE8jKNWWlDGsUJ/arcgis/rest/services/VLi_Web_Map_WFL1/FeatureServer/7",
-    "https://services1.arcgis.com/9NvE8jKNWWlDGsUJ/arcgis/rest/services/VLi_Web_Map_WFL1/FeatureServer/13",
-    "https://services1.arcgis.com/9NvE8jKNWWlDGsUJ/arcgis/rest/services/VLi_Web_Map_WFL1/FeatureServer/14",
-    "https://services1.arcgis.com/9NvE8jKNWWlDGsUJ/arcgis/rest/services/VLi_Web_Map_WFL1/FeatureServer/15",
-    "https://services1.arcgis.com/9NvE8jKNWWlDGsUJ/arcgis/rest/services/VLi_Web_Map_WFL1/FeatureServer/16",
-    "https://services1.arcgis.com/9NvE8jKNWWlDGsUJ/arcgis/rest/services/VLi_Web_Map_WFL1/FeatureServer/19",
-    "https://services1.arcgis.com/9NvE8jKNWWlDGsUJ/arcgis/rest/services/VLi_Web_Map_WFL1/FeatureServer/20",
-    "https://services1.arcgis.com/9NvE8jKNWWlDGsUJ/arcgis/rest/services/VLi_Web_Map_WFL1/FeatureServer/22",
-    "https://services1.arcgis.com/9NvE8jKNWWlDGsUJ/arcgis/rest/services/VLi_Web_Map_WFL1/FeatureServer/24",
-  ];
+export default async function loadData(weatherData,MapElement, territoryCode, keyCode, modalIsOpen) {
+  
   loadModules(
     [
       "esri/views/MapView",
@@ -40,6 +36,94 @@ export default function loadData(weatherData,MapElement) {
       center: [-110, 68.027],
       zoom: 4.5,
     });
+    
+    async function createCityGraphic(coordinates, color, layer) {
+      const pinCoordinates = {
+        type: "point",
+        longitude: coordinates[1],
+        latitude: coordinates[0],
+      };
+
+      const popupTemplate = new PopupTemplate({
+        title: "Station X",
+        content: "<b>Air Temperature:</b> {airTemperature}",
+      });
+
+      let newPointGraphic = new Graphic({
+        symbol: {
+          type: "simple-marker",
+          color: color,
+          size: "5px",
+        },
+        geometry: pinCoordinates,
+        attributes: {
+          cityName: "City Name",
+          weatherDetails: "Weather Details",
+        },
+        popupTemplate: popupTemplate,
+      });
+      liveWeatherDataLayer.add(newPointGraphic);
+
+      view.on("click", (event) => {
+        const clickedPoint = event.mapPoint;
+        const latitude = clickedPoint.latitude,
+        longitude = clickedPoint.longitude;
+        Object.keys(yukonCoordinates).forEach((key) => {
+        if (
+            isWithinRange(
+            yukonCoordinates[key][1],
+            longitude - 2,
+            longitude + 2
+            ) &&
+            isWithinRange(
+            yukonCoordinates[key][0],
+            latitude - 2,
+            latitude + 2
+            )
+        ) {
+          territoryCode = "yt";
+          keyCode = 45;
+          modalIsOpen = true;
+        }
+
+        });
+
+        Object.keys(northWestCoordinates).forEach((key) => {
+          if (
+            isWithinRange(
+              northWestCoordinates[key][1],
+              longitude - 2,
+              longitude + 2
+            ) &&
+            isWithinRange(northWestCoordinates[key][0], latitude - 2, latitude + 2)
+          ) {
+            territoryCode = "nw";
+            keyCode = 45;
+          modalIsOpen = true;
+
+          }
+        });
+
+        Object.keys(nunavutCoordinates).forEach((key) => {
+          if (
+            isWithinRange(
+              nunavutCoordinates[key][1],
+              longitude - 2,
+              longitude + 2
+            ) &&
+            isWithinRange(nunavutCoordinates[key][0], latitude - 2, latitude + 2)
+          ) {
+            territoryCode = "nu";
+            keyCode = 45;
+            modalIsOpen = true;
+            
+          }
+        });
+      });
+
+    }
+
+    
 
     // mapLinks.map((link) => {
     //   const featureLayer = new FeatureLayer(
@@ -49,13 +133,14 @@ export default function loadData(weatherData,MapElement) {
     //   }
     // );
     
+    //SWOB Realtime data
+
     const graphicsLayer = new GraphicsLayer();
     map.add(graphicsLayer);
     let url = `https://api.weather.gc.ca/collections/swob-realtime/items?&f=json`;
-    fetch(url)
+     fetch(url)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data)
         let snowDepth, airTemp, relativeHumidity, avgWindSpeed, retrievedTime, lastUpdatedTime;
         let newPointGraphic;
         weatherData.current = data.features;
@@ -88,44 +173,64 @@ export default function loadData(weatherData,MapElement) {
         }
         
     });
-    view.popup = new Popup({ view: view });
-    view.on("click", (event) => {
-        const clickedPoint = event.mapPoint;
-        const latitude = clickedPoint.latitude,
-        longitude = clickedPoint.longitude;
-        weatherData.current.forEach((item) => {
-        if (
-            isWithinRange(
-            item.geometry.coordinates[0],
-            longitude - 2,
-            longitude + 2
-            ) &&
-            isWithinRange(
-            item.geometry.coordinates[1],
-            latitude - 2,
-            latitude + 2
-            )
-        ) {
-            snowDepth = item.properties.snw_dpth;
-            airTemp = item.properties.air_temp;
-            relativeHumidity = item.properties.rel_hum;
-            avgWindSpeed = item.properties.avg_wnd_spd_10m_pst1hr;
-            retrievedTime = new Date(item.properties["date_tm-value"]);
-            lastUpdatedTime = retrievedTime.toLocaleString();
-            newPointGraphic.popupTemplate.title = `Weather Details at ${
-            item.properties["stn_nam-value"]}`;
-            newPointGraphic.popupTemplate.content = `<b>Snow Depth:</b> ${snowDepth}cm <br> <br>
-                                                    <b>Air Temperature:</b> ${airTemp} °C <br><br>
-                                                    <b>Relative Humidity:</b> ${relativeHumidity}% <br><br>
-                                                    <b>Average Wind Speed:</b> ${avgWindSpeed} km/h <br><br>
-                                                    <b>Last Updated:</b> ${lastUpdatedTime}<br><br> `;
-        }
-        });
+    // view.popup = new Popup({ view: view });
+    // view.on("click", (event) => {
+    //     const clickedPoint = event.mapPoint;
+    //     const latitude = clickedPoint.latitude,
+    //     longitude = clickedPoint.longitude;
+    //     weatherData.current.forEach((item) => {
+    //     if (
+    //         isWithinRange(
+    //         item.geometry.coordinates[0],
+    //         longitude - 2,
+    //         longitude + 2
+    //         ) &&
+    //         isWithinRange(
+    //         item.geometry.coordinates[1],
+    //         latitude - 2,
+    //         latitude + 2
+    //         )
+    //     ) {
+    //         snowDepth = item.properties.snw_dpth;
+    //         airTemp = item.properties.air_temp;
+    //         relativeHumidity = item.properties.rel_hum;
+    //         avgWindSpeed = item.properties.avg_wnd_spd_10m_pst1hr;
+    //         retrievedTime = new Date(item.properties["date_tm-value"]);
+    //         lastUpdatedTime = retrievedTime.toLocaleString();
+    //         newPointGraphic.popupTemplate.title = `Weather Details at ${
+    //         item.properties["stn_nam-value"]}`;
+    //         newPointGraphic.popupTemplate.content = `<b>Snow Depth:</b> ${snowDepth}cm <br> <br>
+    //                                                 <b>Air Temperature:</b> ${airTemp} °C <br><br>
+    //                                                 <b>Relative Humidity:</b> ${relativeHumidity}% <br><br>
+    //                                                 <b>Average Wind Speed:</b> ${avgWindSpeed} km/h <br><br>
+    //                                                 <b>Last Updated:</b> ${lastUpdatedTime}<br><br> `;
+    //     }
+    //     });
+    // });
     });
+
+    const liveWeatherDataLayer = new GraphicsLayer();
+    map.add(liveWeatherDataLayer);
+
+    Object.keys(yukonCoordinates).forEach((key)=>{
+      createCityGraphic(yukonCoordinates[key], "blue", liveWeatherDataLayer);
     });
+
+    Object.keys(northWestCoordinates).forEach((key) => {
+      createCityGraphic(northWestCoordinates[key], "blue", liveWeatherDataLayer);
+    });
+    Object.keys(nunavutCoordinates).forEach((key) => {
+      createCityGraphic(nunavutCoordinates[key], "blue", liveWeatherDataLayer);
+    });
+
+    
+
+      
+
 });
 }
 
 function isWithinRange(number, min, max) {
 return number >= min && number <= max;
 }
+
