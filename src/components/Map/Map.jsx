@@ -8,7 +8,7 @@ import {
   northWestCoordinates,
   nunavutCoordinates,
   yukonCoordinates,
-} from "./Data";
+} from "./Data.js";
 
 function WeatherMap() {
     const weatherData = useRef(null);
