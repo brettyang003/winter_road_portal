@@ -44,11 +44,6 @@ export default async function loadData(weatherData,MapElement, territoryCode, ke
         latitude: coordinates[0],
       };
 
-      const popupTemplate = new PopupTemplate({
-        title: "Station X",
-        content: "<b>Air Temperature:</b> {airTemperature}",
-      });
-
       let newPointGraphic = new Graphic({
         symbol: {
           type: "simple-marker",
@@ -60,7 +55,6 @@ export default async function loadData(weatherData,MapElement, territoryCode, ke
           cityName: "City Name",
           weatherDetails: "Weather Details",
         },
-        popupTemplate: popupTemplate,
       });
       liveWeatherDataLayer.add(newPointGraphic);
 

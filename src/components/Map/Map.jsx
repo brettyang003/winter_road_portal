@@ -80,6 +80,8 @@ function WeatherMap() {
     });
     
     async function createCityGraphic(coordinates, color, layer) {
+        let uniqueKey = -1, territory = null;
+
       const pinCoordinates = {
         type: "point",
         longitude: coordinates[1],
@@ -104,55 +106,74 @@ function WeatherMap() {
         const clickedPoint = event.mapPoint;
         const latitude = clickedPoint.latitude,
         longitude = clickedPoint.longitude;
-        Object.keys(yukonCoordinates).forEach((key) => {
+
+        Object.keys(yukonCoordinates).every((yukonKey) => {
         if (
-            isWithinRange(
-            yukonCoordinates[key][1],
-            longitude - 2,
-            longitude + 2
-            ) &&
-            isWithinRange(
-            yukonCoordinates[key][0],
-            latitude - 2,
-            latitude + 2
-            )
+          isWithinRange(
+            yukonCoordinates[yukonKey][1],
+            longitude - 0.07,
+            longitude + 0.07
+          ) &&
+          isWithinRange(
+            yukonCoordinates[yukonKey][0],
+            latitude - 0.07,
+            latitude + 0.07
+          )
         ) {
-          setTerritory("yt")
-          setKey(key)
-          setModalIsOpen(true);
+          uniqueKey = yukonKey;
+          territory = "yt";
+          return false;
         }
+          return true;
 
         });
 
-        Object.keys(northWestCoordinates).forEach((key) => {
+        Object.keys(northWestCoordinates).every((northKey) => {
           if (
             isWithinRange(
-              northWestCoordinates[key][1],
-              longitude - 2,
-              longitude + 2
+              northWestCoordinates[northKey][1],
+              longitude - 0.01,
+              longitude + 0.01
             ) &&
-            isWithinRange(northWestCoordinates[key][0], latitude - 2, latitude + 2)
+            isWithinRange(northWestCoordinates[northKey][0], latitude - 0.01, latitude + 0.01)
           ) {
-            setTerritory("nt");
-            setKey(key);
-            setModalIsOpen(true);
+            console.log(northKey);
+            uniqueKey = northKey;
+            territory = "nt";
+          return false;
           }
+          return true;
+
         });
 
-        Object.keys(nunavutCoordinates).forEach((key) => {
+        Object.keys(nunavutCoordinates).every((nunavutKey) => {
           if (
             isWithinRange(
-              nunavutCoordinates[key][1],
-              longitude - 2,
-              longitude + 2
+              nunavutCoordinates[nunavutKey][1],
+              longitude - 0.07,
+              longitude + 0.07
             ) &&
-            isWithinRange(nunavutCoordinates[key][0], latitude - 2, latitude + 2)
+            isWithinRange(
+              nunavutCoordinates[nunavutKey][0],
+              latitude - 0.07,
+              latitude + 0.07
+            )
           ) {
-            setTerritory("nu");
-            setKey(key);
-            setModalIsOpen(true);
+            uniqueKey = nunavutKey;
+            territory = "nu";
+            return false;
           }
+          return true;
         });
+        console.log(latitude);
+        console.log(longitude);
+         setKey((prevKey) => uniqueKey);
+         console.log(uniqueKey);
+         setTerritory((prevTerritory) => territory);
+         setModalIsOpen(true);
+         if(territory==null){
+          setModalIsOpen(false);
+         }
       });
 
     }
