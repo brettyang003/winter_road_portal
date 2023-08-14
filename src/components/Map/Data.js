@@ -32,7 +32,7 @@ export const citiesOfNunavut = {
 export const citiesOfNorthwestTerritories  = {
     26:"Colville Lake",
     22:"Deline",
-    1:"Detah",
+    //1:"Detah",
     14:"Ekati",
     2:"Enterprise",
     5:"Fort Good Hope",
@@ -96,7 +96,7 @@ export const mapLinks = [
 ];
 
 export const northWestCoordinates = {
-  1: [62.4112, -114.3084],
+  //1: [62.4112, -114.3084],
   2: [60.5547, -116.1472],
   3: [61.170988, -113.672053],
   4: [61.8609, -121.3527],
@@ -116,7 +116,7 @@ export const northWestCoordinates = {
   21: [65.2811, -126.8316],
   22: [65.1888889, -123.4225],
   23: [63.2268, -123.4667],
-  24: [62.4536, -114.37],
+  24: [62.47536, -114.37],
   26: [67.0399, -126.0912],
   27: [61.3552, -117.6542],
   28: [64.2835797, -115.0680437],

@@ -80,7 +80,6 @@ function WeatherMap() {
     });
     
     async function createCityGraphic(coordinates, color, layer) {
-        let uniqueKey = -1, territory = null;
 
       const pinCoordinates = {
         type: "point",
@@ -103,6 +102,8 @@ function WeatherMap() {
       liveWeatherDataLayer.add(newPointGraphic);
 
       view.on("click", (event) => {
+        let uniqueKey = -1,
+          territory = null;
         const clickedPoint = event.mapPoint;
         const latitude = clickedPoint.latitude,
         longitude = clickedPoint.longitude;
@@ -129,7 +130,8 @@ function WeatherMap() {
         });
 
         Object.keys(northWestCoordinates).every((northKey) => {
-          if (
+          if(northKey===1 || northKey===24){
+            if (
             isWithinRange(
               northWestCoordinates[northKey][1],
               longitude - 0.01,
@@ -137,7 +139,18 @@ function WeatherMap() {
             ) &&
             isWithinRange(northWestCoordinates[northKey][0], latitude - 0.01, latitude + 0.01)
           ) {
-            console.log(northKey);
+            uniqueKey = northKey;
+            territory = "nt";
+            return false
+          }}
+          else if (
+            isWithinRange(
+              northWestCoordinates[northKey][1],
+              longitude - 0.07,
+              longitude + 0.07
+            ) &&
+            isWithinRange(northWestCoordinates[northKey][0], latitude - 0.07, latitude + 0.07)
+          ) {
             uniqueKey = northKey;
             territory = "nt";
           return false;
