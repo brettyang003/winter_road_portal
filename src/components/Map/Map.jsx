@@ -3,6 +3,7 @@ import loadData from './MapFunctions';
 import { Modal } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { loadModules } from "esri-loader";
+import "./styles.css"
 import {
   mapLinks,
   northWestCoordinates,
@@ -30,7 +31,13 @@ function WeatherMap() {
 
     return (
       <div style={{ height: "84vh", border: "none" }} ref={MapElement}>
-        <Modal show={modalIsOpen} onHide={closeModal} size="lg" centered>
+        <Modal
+          show={modalIsOpen}
+          onHide={closeModal}
+          size="lg"
+          dialogClassName="right-half-modal"
+          end
+        >
           <Modal.Header closeButton>
             <Modal.Title> Weather</Modal.Title>
           </Modal.Header>
@@ -43,11 +50,7 @@ function WeatherMap() {
               allowtransparency="true"
             ></iframe>
           </Modal.Body>
-          <Modal.Footer>
-            <button variant="secondary" onClick={closeModal}>
-              Close
-            </button>
-          </Modal.Footer>
+         
         </Modal>
       </div>
     );
@@ -193,15 +196,98 @@ function WeatherMap() {
 
     
 
-    // mapLinks.map((link) => {
-    //   const featureLayer = new FeatureLayer(
-    //     {url: link} , // Specify the URL of the feature layer
-    //   );
-    //   map.add(featureLayer);
-    //   }
-    // );
+    mapLinks.map((link) => {
+      const featureLayer = new FeatureLayer(
+        {url: link} , // Specify the URL of the feature layer
+      );
+      map.add(featureLayer);
+      }
+    );
     
     //////////INSERT SWOB REAL TIME SCRIPT HERE
+          const graphicsLayer = new GraphicsLayer();
+          map.add(graphicsLayer);
+          let url = `https:api.weather.gc.ca/collections/swob-realtime/items?&f=json`;
+          fetch(url)
+            .then((response) => response.json())
+            .then((data) => {
+              let snowDepth,
+                airTemp,
+                relativeHumidity,
+                avgWindSpeed,
+                retrievedTime,
+                lastUpdatedTime;
+              let newPointGraphic;
+              weatherData.current = data.features;
+              const popupTemplate = new PopupTemplate({
+                title: "Station X",
+                content: "<b>Air Temperature:</b> {airTemperature}",
+              });
+              weatherData.current.forEach((item) => {
+                let coordinates = {
+                  type: "point",
+                  longitude: item.geometry.coordinates[0],
+                  latitude: item.geometry.coordinates[1],
+                };
+                if (coordinates.latitude > 60) {
+                  newPointGraphic = new Graphic({
+                    symbol: {
+                      type: "simple-marker",
+                      color: "red",
+                      size: "5px",
+                    },
+                    geometry: coordinates,
+                    attributes: {
+                      name: "New Point",
+                      type: "Sample",
+                    },
+                    popupTemplate: popupTemplate,
+                  });
+
+                  graphicsLayer.add(newPointGraphic);
+                }
+              });
+
+              //Gives instructions on what the point does when it is clicked
+              view.popup = new Popup({ view: view });
+              view.on("click", (event) => {
+                const clickedPoint = event.mapPoint;
+                const latitude = clickedPoint.latitude,
+                  longitude = clickedPoint.longitude;
+
+                //determines which point was clicked based on the coordiantes of the clicked point
+                weatherData.current.forEach((item) => {
+                  if (
+                    isWithinRange(
+                      item.geometry.coordinates[0],
+                      longitude - 2,
+                      longitude + 2
+                    ) &&
+                    isWithinRange(
+                      item.geometry.coordinates[1],
+                      latitude - 2,
+                      latitude + 2
+                    )
+                  ) {
+                    //retrieves the clicked point's information
+                    snowDepth = item.properties.snw_dpth;
+                    airTemp = item.properties.air_temp;
+                    relativeHumidity = item.properties.rel_hum;
+                    avgWindSpeed = item.properties.avg_wnd_spd_10m_pst1hr;
+                    retrievedTime = new Date(item.properties["date_tm-value"]);
+                    lastUpdatedTime = retrievedTime.toLocaleString();
+                    newPointGraphic.popupTemplate.title = `Weather Details at ${item.properties["stn_nam-value"]}`;
+                    //Modifies the popup template with the relevant information
+                    newPointGraphic.popupTemplate.content = `<b>Snow Depth:</b> ${snowDepth}cm <br> <br>
+                                                 <b>Air Temperature:</b> ${airTemp} °C <br><br>
+                                                 <b>Relative Humidity:</b> ${relativeHumidity}% <br><br>
+                                                 <b>Average Wind Speed:</b> ${avgWindSpeed} km/h <br><br>
+                                                 <b>Last Updated:</b> ${lastUpdatedTime}<br><br> `;
+                  }
+                });
+              });
+            });
+    
 
     const liveWeatherDataLayer = new GraphicsLayer();
     map.add(liveWeatherDataLayer);

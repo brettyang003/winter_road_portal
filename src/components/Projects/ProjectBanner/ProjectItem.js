@@ -1,7 +1,6 @@
 import React from "react";
 import {Row,Col, Card, Button} from 'react-bootstrap';
-import "./styles.css";
-
+import "./styles.css"
 const ProjectItem = ({ props }) => {
   const { image, title, content, bgColor } = props;
   return (

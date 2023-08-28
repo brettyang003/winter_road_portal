@@ -81,7 +81,7 @@ export const citiesOfYukon = {
 }
 
 export const mapLinks = [
-  "https://services1.arcgis.com/9NvE8jKNWWlDGsUJ/arcgis/rest/services/VLi_Web_Map_WFL1/FeatureServer/0",
+  "https://services1.arcgis.com/9NvE8jKNWWlDGsUJ/arcgis/rest/services/brettMap/FeatureServer",
   "https://services1.arcgis.com/9NvE8jKNWWlDGsUJ/arcgis/rest/services/VLi_Web_Map_WFL1/FeatureServer/1",
   "https://services1.arcgis.com/9NvE8jKNWWlDGsUJ/arcgis/rest/services/VLi_Web_Map_WFL1/FeatureServer/3",
   "https://services1.arcgis.com/9NvE8jKNWWlDGsUJ/arcgis/rest/services/VLi_Web_Map_WFL1/FeatureServer/7",
