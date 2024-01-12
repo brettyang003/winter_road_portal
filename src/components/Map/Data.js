@@ -190,5 +190,21 @@ export const yukonCoordinates = {
   17: [62.0911111, -136.2969444]
 };
 
+export const layerNames = [
+  "Ports in Northwest Territories",
+  "NRN Road Segments",
+  "Ice Roads in Northwest Territories",
+  "Airports in Northwest Territories",
+  "Communities in Northwest Territories",
+  "Roadways in Nunavut",
+  "Airports in Nunavut",
+  "Healthcare in Nunavut",
+  "Communities in Yukon",
+  "Wilderness Tourism Trails",
+  "Nation Heritage Routes",
+  "Water 2M",
+  "Ice Crossing YT",
+  "Airports YT",
 
+];
 

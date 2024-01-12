@@ -1,0 +1,255 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0px;
+    padding: 0px;
+}
+
+.sidebar {
+    overflow: hidden;
+    position: absolute;
+    display: block;
+    z-index: 101;
+    top: 0;
+    right: 0;
+}
+
+.municipality {
+    right: 0;
+    overflow: scroll;
+    height: 100vh;
+    width: 100vw;
+    max-width: 1050px;
+    background-color: rgba(0, 0, 0, 1);
+    color: white;
+}
+
+.munici-content {
+    margin: 0 30px 0 30px;
+}
+
+.close_button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.9);
+    padding: 0 7px;
+    margin: 10px;
+    font-size: 26px;
+    z-index: 102;
+}
+
+.close_button:hover {
+    color: gray;
+}
+
+#mapid {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+}
+
+#info-pane {
+    position: absolute;
+    top: 10px;
+    right: 120px;
+    z-index: 400;
+    padding: 1em;
+    background: white;
+    z-index: 80;
+    font-size: 15px;
+}
+
+.utilities {
+    display: block;
+    position: absolute;
+    left: 10px;
+    top: 95px;
+    z-index: 80;
+}
+
+.legends {
+    display: block;
+    position: absolute;
+    right: 10px;
+    top: 60px;
+    z-index: 80;
+}
+
+.float-right {
+    float: right;
+}
+
+.legends-content {
+    right: 10px;
+    top: 50px;
+    position: absolute;
+    width: 250px;
+    background-color: white;
+    box-shadow: 5px 10px 12px #888888;
+    padding: 10px 10px 10px 0;
+}
+
+.legends-content h3 {
+    margin: 0;
+}
+
+.dropbtn {
+    background-color: inherit;
+    color: black;
+    padding: 7px;
+    font-size: 24px;
+    border: none;
+    /* border-radius: 120px;
+    border-style: solid;
+    border-color: black; */
+    cursor: pointer;
+}
+
+.dropbtn-span {
+    font-size: 21px;
+}
+
+.hide_span:hover span {
+    display: inline-block;
+}
+
+.hide_span span {
+    display: none;
+}
+
+.dropdown-content {
+    display: block;
+    position: absolute;
+    background-color: white;
+    box-shadow: 5px 10px 12px #888888;
+    font-size: 15px;
+    font-weight: lighter;
+    overflow: scroll;
+    width: 300px;
+    max-height: 250px;
+}
+
+.surface_button {
+    display: block;
+    width: 100%;
+    font-size: 16px;
+    font-weight: 400;
+    text-align: left;
+    border: none;
+    margin: 0;
+    background-color: inherit;
+}
+
+.surface_button:hover {
+    background-color: beige;
+}
+
+.info {
+    display: inline-block;
+    font-size: 16px;
+    padding-left: 5px;
+    width: 20px;
+}
+
+.info a {
+    text-decoration: none;
+    color: black;
+}
+
+.info button {
+    border: none;
+    background-color: inherit;
+}
+
+.left_margin {
+    margin-left: 15px;
+}
+
+.detailSheets {
+    width: 100%;
+    border: none;
+    background-color: inherit;
+}
+
+.hide {
+    display: none !important;
+}
+
+.transition {
+    transition: 1s;
+}
+
+.divIcon {
+    position: absolute;
+    float: left;
+}
+
+.label {
+    font-size: 15px;
+}
+
+.imgLabel {
+    height: 15px;
+    width: 15px;
+    font-size: 13px;
+    margin-left: 23px;
+}
+
+.servicesLabel {
+    height: 30px;
+    width: 30px;
+    margin: 5px;
+}
+
+.getAttachment {
+    border: none;
+    background-color: inherit;
+    font-size: 12px;
+}
+
+.getAttachment:hover {
+    background-color: beige;
+}
+
+#synopsis {
+    margin-top: 15vh;
+    margin-left: 25vw;
+}
+
+.flex {
+    display: flex;
+}
+
+.LarissaLayer {
+    width: 50vw;
+    height: 70vh;
+    display: inline-block;
+    background-color: white;
+    border-radius: 7px;
+    box-shadow: 0px 0px 5px 2px black;
+    z-index: 400;
+    overflow: scroll;
+}
+
+.LarissaContent {
+    display: inline-block;
+    padding: 20px 20px;
+}
+
+.LarissaContent a {
+    text-decoration: none;
+    color: black;
+}
+
+.LarissaHeader img {
+    width: 50%;
+    margin: 20px 25%;
+}
+
+.bold {
+    font-weight: bold;
+}
