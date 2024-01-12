@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <title>Map</title>
+    <!--leaflet library-->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
+
+    <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-ajax/2.1.0/leaflet.ajax.min.js"></script>
+    <!-- Load Esri Leaflet from CDN -->
+    <script src="https://unpkg.com/esri-leaflet@3.0.1/dist/esri-leaflet.js" integrity="sha512-JmpptMCcCg+Rd6x0Dbg6w+mmyzs1M7chHCd9W8HPovnImG2nLAQWn3yltwxXRM7WjKKFFHOAKjjF2SC4CgiFBg==" crossorigin=""></script>
+    <!--<script src="https://unpkg.com/esri-leaflet-vector@3.0.0/dist/esri-leaflet-vector.js"></script>-->
+    <!--Marker Cluster-->
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/leaflet.markercluster@1.5.0/dist/MarkerCluster.Default.css" integrity="sha512-6ZCLMiYwTeli2rVh3XAPxy3YoR5fVxGdH/pz+KMCzRY2M65Emgkw00Yqmhh8qLGeYQ3LbVZGdmOX9KUjSKr0TA==" crossorigin="">
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/leaflet.markercluster@1.5.0/dist/MarkerCluster.css" integrity="sha512-mQ77VzAakzdpWdgfL/lM1ksNy89uFgibRQANsNneSTMD/bj0Y/8+94XMwYhnbzx8eki2hrbPpDm0vD0CiT2lcg==" crossorigin="">
+    <script src="https://unpkg.com/leaflet.markercluster@1.5.0/dist/leaflet.markercluster.js" integrity="sha512-pWPELjRaw2ZdoT0PDi7iRpRlk1XX3rtnfejJ/HwskyojpHei+9hKpwdphC4yssNt4FM0TjMQOmMrk6ZYSn274w==" crossorigin=""></script>
+    <script src="https://unpkg.com/esri-leaflet-cluster@2.1.0/dist/esri-leaflet-cluster.js" integrity="sha512-fEdNFHisleVtEYdLhW4Z2RsR7TN6hLutE/+O4D+skfTNY2rlHm8HOZARPWkdrFFy/+i2KjFxcZAKTUWaVfbV0g==" crossorigin=""></script>
+    <!-- After Leaflet and Leaflet.markercluster scripts -->
+    <!--<script src="./leaflet.markercluster.layersupport.js"></script>-->
+    <!--css style sheet-->
+    <link rel="stylesheet" type="text/css" href="./style.css">
+    <link rel="stylesheet" type="text/css" href="../map_navbar.css">
+    <script src="../nav.js"></script>
+    <!--Google fonts-->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <!--font awsome icon-->
+    <script src="https://kit.fontawesome.com/546c676165.js" crossorigin="anonymous"></script>
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+
+    <!--info button-->
+    <link href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+</head>
+
+<body>
+    <div id="navbar">
+        <div id="sidebar_right">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <a href="../index.html">HOME</a>
+            <a class="active" href="../esri_leaflet/map.html">MAP</a>
+            <a href="../survey/survey.html">OBSERVATION</a>
+            <a href="../data_portal/index.php">TRANSPORTATION</a>
+            <a href="../about/index.html">ABOUT</a>
+            <a href="../login/index.html" style="padding-right: 20px;">LOGIN</a>
+        </div>
+        <div id="main">
+            <button class="openbtn" onclick="openNav()"><div><span style="font-size: 23px;">Menu</span>&#9776;</div></button>
+        </div>
+    </div>
+    <div id="sidebar" class="sidebar">
+        <div id="Yellowknife" class="municipality hide">
+            <div class="munici-content">
+                <button onclick="hideId('Yellowknife')" class="close_button">&times;</button>
+                <h2 style="color: dodgerblue;">Municipality: </h2>
+                <h1>Yellowknife</h1>
+                <div id="chartContainer2204101" style="height: 370px; width: 100%;"></div>
+            </div>
+        </div>
+        <div id="Whitehorse" class="municipality hide">
+            <div class="munici-content">
+                <button onclick="hideId('Whitehorse')" class="close_button">&times;</button>
+                <h2 style="color: dodgerblue;">Municipality: </h2>
+                <h1>Whitehorse</h1>
+                <div id="chartContainer2101310" style="height: 370px; width: 100%;"></div>
+            </div>
+        </div>
+        <div id="Iqaluit" class="municipality hide">
+            <div class="munici-content">
+                <button onclick="hideId('Iqaluit')" class="close_button">&times;</button>
+                <h2 style="color: dodgerblue;">Municipality: </h2>
+                <h1>Iqaluit</h1>
+                <div id="chartContainer2402592" style="height: 370px; width: 100%;"></div>
+            </div>
+        </div>
+        <div id="dawson_city" class="municipality hide">
+            <div class="munici-content">
+                <button onclick="hideId('dawson_city')" class="close_button">&times;</button>
+                <h2 style="color: dodgerblue;">Municipality: </h2>
+                <h1>Dawson</h1>
+                <div id="chartContainer2100LRP" style="height: 370px; width: 100%;"></div>
+            </div>
+        </div>
+        <div id="mayo" class="municipality hide">
+            <div class="munici-content">
+                <button onclick="hideId('mayo')" class="close_button">&times;</button>
+                <h2 style="color: dodgerblue;">Municipality: </h2>
+                <h1>Mayo</h1>
+                <div id="chartContainer2100701" style="height: 370px; width: 100%;"></div>
+            </div>
+        </div>
+        <div id="carmacks" class="municipality hide">
+            <div class="munici-content">
+                <button onclick="hideId('carmacks')" class="close_button">&times;</button>
+                <h2 style="color: dodgerblue;">Municipality: </h2>
+                <h1>Carmacks</h1>
+                <div id="chartContainer2100301" style="height: 370px; width: 100%;"></div>
+            </div>
+        </div>
+        <div id="faro" class="municipality hide">
+            <div class="munici-content">
+                <button onclick="hideId('faro')" class="close_button">&times;</button>
+                <h2 style="color: dodgerblue;">Municipality: </h2>
+                <h1>Faro</h1>
+                <div id="chartContainer2100518" style="height: 370px; width: 100%;"></div>
+            </div>
+        </div>
+        <div id="teslin" class="municipality hide">
+            <div class="munici-content">
+                <button onclick="hideId('teslin')" class="close_button">&times;</button>
+                <h2 style="color: dodgerblue;">Municipality: </h2>
+                <h1>Teslin</h1>
+                <div id="chartContainer2101102" style="height: 370px; width: 100%;"></div>
+            </div>
+        </div>
+        <div id="watson_lake" class="municipality hide">
+            <div class="munici-content">
+                <button onclick="hideId('watson_lake')" class="close_button">&times;</button>
+                <h2 style="color: dodgerblue;">Municipality: </h2>
+                <h1>Watson Lake</h1>
+                <div id="chartContainer2101204" style="height: 370px; width: 100%;"></div>
+            </div>
+        </div>
+        <div id="Fort_McPherson" class="municipality hide">
+            <div class="munici-content">
+                <button onclick="hideId('Fort_McPherson')" class="close_button">&times;</button>
+                <h2 style="color: dodgerblue;">Municipality: </h2>
+                <h1>Fort McPherson</h1>
+                <div id="chartContainer2201601" style="height: 370px; width: 100%;"></div>
+            </div>
+        </div>
+        <div id="Fort_Good_Hope" class="municipality hide">
+            <div class="munici-content">
+                <button onclick="hideId('Fort_Good_Hope')" class="close_button">&times;</button>
+                <h2 style="color: dodgerblue;">Municipality: </h2>
+                <h1>Fort Good Hope</h1>
+                <div id="chartContainer2201450" style="height: 370px; width: 100%;"></div>
+            </div>
+        </div>
+        <div id="Fort_Simpson" class="municipality hide">
+            <div class="munici-content">
+                <button onclick="hideId('Fort_Simpson')" class="close_button">&times;</button>
+                <h2 style="color: dodgerblue;">Municipality: </h2>
+                <h1>Fort Simpson</h1>
+                <div id="chartContainer2202102" style="height: 370px; width: 100%;"></div>
+            </div>
+        </div>
+        <div id="Fort_Liard" class="municipality hide">
+            <div class="munici-content">
+                <button onclick="hideId('Fort_Liard')" class="close_button">&times;</button>
+                <h2 style="color: dodgerblue;">Municipality: </h2>
+                <h1>Fort Liard</h1>
+                <div id="chartContainer2201579" style="height: 370px; width: 100%;"></div>
+            </div>
+        </div>
+        <div id="Hay_River" class="municipality hide">
+            <div class="munici-content">
+                <button onclick="hideId('Hay_River')" class="close_button">&times;</button>
+                <h2 style="color: dodgerblue;">Municipality: </h2>
+                <h1>Hay River</h1>
+                <div id="chartContainer2202402" style="height: 370px; width: 100%;"></div>
+            </div>
+        </div>
+        <div id="Fort_Smith" class="municipality hide">
+            <div class="munici-content">
+                <button onclick="hideId('Fort_Smith')" class="close_button">&times;</button>
+                <h2 style="color: dodgerblue;">Municipality: </h2>
+                <h1>Fort Smith</h1>
+                <div id="chartContainer2202202" style="height: 370px; width: 100%;"></div>
+            </div>
+        </div>
+    </div>
+    <noscript>You need to enable JavaScript to run this page.</noscript>
+
+    <div id="mapid"></div>
+    <div id="info-pane" class="leaflet-bar">Hover to inspect</div>
+    <div class="legends">
+        <button onclick="myFunction('legends')" id="openbtn" class="dropbtn hide_span hide"><span class="dropbtn-span">Legend </span>&#10697;</button>
+        <button onclick="myFunction('legends')" id="closebtn" class="dropbtn float-right hide_span"><span class="dropbtn-span">Legend </span>&#10697;</button>
+        <div id="legends" class="legends-content">
+            <svg height="15" width="35">
+                <line x1="25" y1="9" x2="35" y2="9" style="stroke:rgb(0, 0, 180);stroke-width:2"/>
+            </svg><span class="label"> Winter Road</span><br>
+            <svg height="15" width="35">
+                <line x1="25" y1="9" x2="35" y2="9" style="stroke:red;stroke-width:2"/>
+            </svg><span class="label"> All Weather Road</span><br>
+            <svg height="15" width="35">
+                <line x1="25" y1="9" x2="35" y2="9" style="stroke:black;stroke-width:2"/>
+            </svg><span class="label"> Local Road</span><br>
+            <svg height="15" width="35">
+                <line x1="25" y1="9" x2="35" y2="9" style="stroke:lightgreen;stroke-width:2"/>
+            </svg><span class="label"> Proposed Road</span><br>
+            <svg height="15" width="35">
+                <line x1="25" y1="9" x2="35" y2="9" style="stroke:gray;stroke-width:2"/>
+            </svg><span class="label"> Railway</span><br>
+            <svg height="15" width="35">
+                <line x1="25" y1="9" x2="35" y2="9" style="stroke:aqua;stroke-width:2"/>
+            </svg><span class="label"> Ferry and Ice Crossing</span><br>
+            <!-- <svg height="15" width="35">
+                <line x1="25" y1="9" x2="35" y2="9" style="stroke:skyblue;stroke-width:2"/>
+            </svg><span class="label"> Water</span><br> -->
+            <!-- <svg height="15" width="35">
+                <line x1="25" y1="9" x2="35" y2="9" style="stroke:brown;stroke-width:2"/>
+            </svg><span class="label"> First Nation Heritage Routes</span><br>
+            <svg height="15" width="35">
+                <line x1="25" y1="9" x2="35" y2="9" style="stroke:orange;stroke-width:2"/>
+            </svg><span class="label"> Wilderness Tourism Trails</span><br> -->
+            <div id="airportLegend" class="hide">
+                <img src="./airport_icon.png" alt="" class="imgLabel"><span class="label"> Unpaved Airports</span><br>
+                <img src="./airport_icon2.png" alt="" class="imgLabel"><span class="label"> Paved Airports</span><br>
+            </div>
+            <div id="medLegend" class="hide"><img src="./hospital.png" alt="" class="imgLabel"><span class="label"> Medical Services</span><br></div>
+            <div id="portLegend" class="hide"><img src="./anchor.png" alt="" class="imgLabel"><span class="label"> Port Communities</span><br></div>
+            <div id="PPALegend" class="hide">
+                <svg height="15" width="38">
+                    <polygon points="25,1 25,14 38,14 38,1" style="fill:lawngreen" />
+                </svg><span class="label"> Park and Protected Areas</span><br>
+            </div>
+            <div id="FNSLLegend" class="hide">
+                <svg height="15" width="38">
+                    <polygon points="25,1 25,14 38,14 38,1" style="fill:darkred" />
+                </svg><span class="label"> First Nations Settlement Lands</span><br>
+            </div>
+            <div id="ABLegend" class="hide">
+                <svg height="15" width="38">
+                    <polygon points="25,1 25,14 38,14 38,1" style="fill:coral" />
+                </svg><span class="label"> Aboriginal Boundaries</span><br>
+            </div>
+        </div>
+    </div>
+    <div id="utilities" class="utilities">
+        <button class="dropbtn hide_span" onclick="resetZoom()"><i class="fa fa-home"></i><span class="dropbtn-span"> Reset Zoom</span></button>
+
+        <div class="dropdown">
+            <button onclick="myFunction('myDropdown')" class="dropbtn hide_span"><i class="fas">&#xf5fd;</i><span class="dropbtn-span"> Settings</span></button>
+            <div id="myDropdown" class="dropdown-content hide">
+                <div id="layers">
+                    <button onclick="toSub(3)" id="databtn" class="surface_button transition">&#x25B2; Climate Data</button>
+                    <div id="data" class="transition left_margin hide">
+                        <input type="checkbox" name="marker" id="real_time_data" value="real_time_data">
+                        <label for="real_time_data">Climate Data</label><br>
+                    </div>
+                    <button onclick="toSub(9)" id="skdatabtn" class="surface_button transition">&#x25B2; SkNOWLEDGE Collective Data</button>
+                    <div id="skdata" class="transition left_margin hide">
+                        <input type="checkbox" name="marker" id="sk_data" value="sk_data">
+                        <label for="sk_data">SkNOWLEDGE Collective Data</label>
+                        <div class="info">
+                            <button onclick="showLarissa()"><i class="icon-info-sign"></i></button>
+                        </div>
+                    </div>
+                    <button onclick="toSub(10)" id="satellitebtn" class="surface_button transition">&#x25B2; Satellite Views</button>
+                    <div id="satellite" class="transition left_margin hide">
+                        <input type="checkbox" name="marker" id="modis" value="modis">
+                        <label for="modis">MODIS</label><br>
+                        <input type="checkbox" name="marker" id="viirs" value="viirs">
+                        <label for="viirs">VIIRS</label><br>
+                    </div>
+                    <button onclick="toSub(1)" id="roadbtn" class="surface_button transition">&#x25B2; Roads</button>
+                    <div id="road" class="transition left_margin hide">
+                        <input type="checkbox" name="marker" id="iceNWT" value="iceNWT">
+                        <label for="iceNWT">Winter Road (Northwest Territories)</label><br>
+                        <input type="checkbox" name="marker" id="ferry" value="ferry">
+                        <label for="ferry">Ferry and Ice Crossing (Northwest Territories)</label><br>
+                        <input type="checkbox" name="marker" id="roadNWT" value="roadNWT">
+                        <label for="roadNWT">Highway and Main Road (Northwest Territories)</label><br>
+                        <input type="checkbox" name="marker" id="localRoadNWT" value="localRoadNWT">
+                        <label for="localRoadNWT">Local Road (Northwest Territories)</label><br>
+                        <input type="checkbox" name="marker" id="propRoadNWT" value="propRoadNWT">
+                        <label for="propRoadNWT">Proposed Road (Northwest Territories)</label><br>
+
+                        <input type="checkbox" name="marker" id="iceYukon" value="iceYukon">
+                        <label for="iceYukon">Ice Crossing (Yukon)</label><br>
+                        <input type="checkbox" name="marker" id="roadYukon" value="roadYukon">
+                        <label for="roadYukon">Highway and Main Road (Yukon)</label><br>
+                        <input type="checkbox" name="marker" id="localRoadYU" value="localRoadYU">
+                        <label for="localRoadYU">Local Road (Yukon)</label><br>
+
+                        <input type="checkbox" name="marker" id="roadNU" value="roadNU">
+                        <label for="roadNU">Local Road (Nunavut)</label><br>
+                    </div>
+                    <button onclick="toSub(2)" id="other_trailbtn" class="surface_button transition">&#x25B2; Themed Routes</button>
+                    <div id="other_trail" class="transition left_margin hide">
+                        <input type="checkbox" name="marker" id="FNHR" value="FNHR">
+                        <label for="FNHR">First Nations Heritage Route</label><br>
+                        <input type="checkbox" name="marker" id="WTT" value="WTT">
+                        <label for="WTT">Wilderness Tourism Trail</label><br>
+                    </div>
+                    <button onclick="toSub(11)" id="railwaysbtn" class="surface_button transition">&#x25B2; Railways</button>
+                    <div id="railways" class="transition left_margin hide">
+                        <input type="checkbox" name="marker" id="railNWT" value="railNWT">
+                        <label for="railNWT">Railway (Northwest Territories)</label><br>
+                        <input type="checkbox" name="marker" id="railYukon" value="railYukon">
+                        <label for="railYukon">White Pass and Yukon Route (Yukon)</label><br>
+                    </div>
+                    <button onclick="toSub(4)" id="airportbtn" class="surface_button transition">&#x25B2; Airport</button>
+                    <div id="airport" class="transition left_margin hide">
+                        <input type="checkbox" name="marker" id="airportYukon" value="airportYukon">
+                        <label for="airportYukon">Airport (Yukon)</label><br>
+                        <input type="checkbox" name="marker" id="airportNU" value="airportNU">
+                        <label for="airportNU">Airport (Northwest Territories)</label><br>
+                        <input type="checkbox" name="marker" id="airportNWT" value="airportNWT">
+                        <label for="airportNWT">Airport (Nunavut)</label><br>
+                    </div>
+                    <button onclick="toSub(5)" id="healthcarebtn" class="surface_button">&#x25B2; Medical Services</button>
+                    <div id="healthcare" class="transition left_margin hide">
+                        <input type="checkbox" name="marker" id="healthcareNU" value="healthcareNU">
+                        <label for="healthcareNU">Medical Service (Nunavut)</label><br>
+                    </div>
+                    <button onclick="toSub(6)" id="communitiesbtn" class="surface_button">&#x25B2; Port Communities</button>
+                    <div id="communities" class="transition left_margin hide">
+                        <input type="checkbox" name="marker" id="portCommNWT" value="portCommNWT">
+                        <label for="portCommNWT">Port Community (Northwest Territories)</label><br>
+                    </div>
+                    <button onclick="toSub(7)" id="poibtn" class="surface_button">&#x25B2; Points of Interest</button>
+                    <div id="poi" class="transition left_margin hide">
+                        <input type="checkbox" name="marker" id="poiA" value="poiA">
+                        <label for="poiA">Points of Interest (All Territories)</label><br>
+                    </div>
+                    <button onclick="toSub(8)" id="boundariesbtn" class="surface_button">&#x25B2; Others</button>
+                    <div id="boundaries" class="transition left_margin hide">
+                        <input type="checkbox" name="marker" id="water" value="water">
+                        <label for="water">Water 2M</label><br>
+                        <input type="checkbox" name="marker" id="PPA" value="PPA">
+                        <label for="PPA">Park and Protected Area 1M</label><br>
+                        <!-- <input type="checkbox" name="marker" id="FNSL" value="FNSL">
+                        <label for="FNSL">First Nations Settlement Lands 1M</label><br> -->
+                        <!-- <input type="checkbox" name="marker" id="AB" value="AB">
+                        <label for="AB">Aboriginal Boundaries</label><br> -->
+                    </div>
+                </div>
+                <button onclick="toSub(0)" id="basemapbtn" class="surface_button transition">&#x25B2; Basemap Gallery</button>
+                <div id="basemap" class="transition left_margin hide">
+                    <select class="detailSheets">
+                        <option value="Streets" selected="selected">Streets</option>
+                        <option value="Topographic">Topographic</option>
+                        <option value="NationalGeographic">National Geographic</option>
+                        <option value="Imagery">Imagery</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="synopsis" class="flex hide">
+        <div id="LarissaLayer" class="LarissaLayer">
+            <div class="LarissaContent">
+                <a class="LarissaHeader" href="http://www.sknowledge.ca/"><img src="./logo_fullcolour.png" alt=""></a>
+                <h3>About.</h3>
+                <p>The Snow Knowledge Collective (or SkNOWLEDGE Collective) is a school-based citizen science initiative (est. 2020) investigating the changing climate in our local communities over the winter months. Students observe and collect meteorological
+                    data (snow depth, extent, cloud cover and air temperature) in their very own school yards (& beyond) using low-cost field-based tools such as rulers and thermometers, along with a desire to take their learning outdoors. Once data is
+                    submitted to the portal, all submissions are publicly available on the interactive map allowing you to explore your data (and others!) alongside other satellite earth observation datasets, and so much more! <br><br>Visit their website
+                    for more information including a comprehensive list of all available resources and toolkits to help get started (or continue!) your SkNOWLEDGE journey! We look forward to exchanging SkNOWLEDGE!</p>
+                <h3>Connect.</h3>
+                <i class="fas fa-globe"></i><a href="https://www.sknowledge.ca"> www.sknowledge.ca</a><br>
+                <i class="fab fa-twitter" style="color: rgb(54, 182, 233);"></i><a href="https://twitter.com/sknowledgeco"> @sknowledgeco</a><br>
+                <i class="far fa-envelope"></i><a href="mailto:hi@sknowledge.ca"> hi@sknowledge.ca </a>
+            </div>
+        </div>
+    </div>
+    <script src="./setting.js"></script>
+    <script src="./data.js"></script>
+    <script src="./map.js"></script>
+    <script src="./initMap.js"></script>
+    <script src="./chart.js"></script>
+    <script src="./chartData.js"></script>
+</body>
+
+</html>
