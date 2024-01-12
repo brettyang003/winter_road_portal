@@ -9,6 +9,7 @@ import {
   northWestCoordinates,
   nunavutCoordinates,
   yukonCoordinates,
+  layerNames
 } from "./Data.js";
 
 function WeatherMap() {
@@ -31,8 +32,8 @@ function WeatherMap() {
 
     return (
       <div style={{ height: "84vh", border: "none" }} ref={MapElement}>
-        <div id="layer-list-container"></div>
         <div id="legend-container"></div>
+        <div id="layer-list-container"></div>
         <Modal
           show={modalIsOpen}
           onHide={closeModal}
@@ -97,6 +98,18 @@ function WeatherMap() {
     });
 
     
+    const layerListExpand = new Expand({
+      content: layerList.domNode,
+      view,
+      expanded: false,
+    });
+
+    const legendExpand = new Expand({
+      content: legend.domNode,
+      view,
+      expanded: false,
+    });
+
     async function createCityGraphic(coordinates, color, layer) {
 
       const pinCoordinates = {
@@ -211,7 +224,8 @@ function WeatherMap() {
 
     
 
-    mapLinks.forEach((link) => {
+    mapLinks.forEach((link, index) => {
+      
       const featureLayer = new FeatureLayer({
         url: link,
       });
@@ -220,12 +234,16 @@ function WeatherMap() {
       
     });
 
-    view.ui.add(layerList, "top-right");
-    view.ui.add(legend, "bottom-right");
+    view.ui.add(layerListExpand, "top-left");
+    view.ui.add(legendExpand, "top-left");
     
     
 
-    const liveWeatherDataLayer = new GraphicsLayer();
+    const liveWeatherDataLayer = new GraphicsLayer(
+      {
+        title: "Live Weather Data"
+      }
+    );
     map.add(liveWeatherDataLayer);
 
     Object.keys(yukonCoordinates).forEach((key)=>{
