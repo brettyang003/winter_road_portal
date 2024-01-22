@@ -106,7 +106,7 @@
         });
         const layerList = new LayerList({
           view,
-          container: "layer-list-container",
+          container: "layer-list-container", // Add a div with id="legend-container" in your JSX
         });
 
         const legend = new Legend({
@@ -126,6 +126,9 @@
           expanded: false,
         });
 
+       
+        
+
         // Adding a third custom zoom button
         const customZoomButton = document.createElement("div");
         customZoomButton.innerHTML = "🏠";
@@ -137,7 +140,7 @@
         );
 
         customZoomButton.addEventListener("click", () => {
-          view.goTo({ center: [-110, 68.027], zoom: 4.5 });
+          
         });
 
         view.ui.add(customZoomButton, "top-left");
@@ -265,7 +268,6 @@
 
           map.add(featureLayer);
         });
-
         view.ui.add(layerListExpand, "top-left");
         view.ui.add(legendExpand, "top-left");
 
