@@ -104,6 +104,7 @@
           center: [-110, 68.027],
           zoom: 4.5,
         });
+
         const layerList = new LayerList({
           view,
           container: "layer-list-container", // Add a div with id="legend-container" in your JSX
@@ -140,7 +141,7 @@
         );
 
         customZoomButton.addEventListener("click", () => {
-          
+          view.goTo({ center: [-110, 68.027], zoom: 4.5 });
         });
 
         view.ui.add(customZoomButton, "top-left");
@@ -283,7 +284,7 @@
             liveWeatherDataLayer
           );
         });
-
+        
         Object.keys(northWestCoordinates).forEach((key) => {
           createCityGraphic(
             northWestCoordinates[key],
