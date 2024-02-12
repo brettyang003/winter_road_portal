@@ -267,8 +267,14 @@
             url: link,
           });
 
+          // Set visibility for specific indices
+          if (index === 0 || index === 4 || index === 7 ) {
+            featureLayer.visible = false;
+          }
+
           map.add(featureLayer);
         });
+
         view.ui.add(layerListExpand, "top-left");
         view.ui.add(legendExpand, "top-left");
 
