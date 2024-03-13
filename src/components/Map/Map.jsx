@@ -15,6 +15,7 @@
   function WeatherMap() {
       const weatherData = useRef(null);
       const MapElement = useRef(null);
+      const map = useRef(null);
       const [territory,setTerritory] = useState(null);
       const [key, setKey] = useState(null);
 
@@ -30,10 +31,13 @@
         setModalIsOpen(false);
       }
 
+      
+
       return (
         <div style={{ height: "84vh", border: "none" }} ref={MapElement}>
           <div id="legend-container"></div>
           <div id="layer-list-container"></div>
+          
           <Modal
             show={modalIsOpen}
             onHide={closeModal}
@@ -56,8 +60,8 @@
           </Modal>
         </div>
       );
-
-      function loadData(weatherData,MapElement) {
+      
+function loadData(weatherData,MapElement, mapType ="arcgis-topographic" ) {
     
     loadModules(
       [
@@ -97,7 +101,7 @@
         esriConfig.apiKey =
           "AAPK523b3670e87d4504aa86c87ef22885f8B2U9Y_GAGwSmQV3HOq8d7NqRWn09tIR1BIMKvA6lf3581mq2wW2RuKOxPy75ccle";
 
-        const map = new Map({ basemap: "arcgis-topographic" });
+        const map = new Map({ basemap: mapType });
         const view = new MapView({
           container: MapElement.current,
           map: map,
@@ -107,7 +111,7 @@
 
         const layerList = new LayerList({
           view,
-          container: "layer-list-container", // Add a div with id="legend-container" in your JSX
+          container: "layer-list-container",
         });
 
         const legend = new Legend({
@@ -119,17 +123,15 @@
           content: layerList.domNode,
           view,
           expanded: false,
+          expandIconClass: "custom-layerlist-icon",
         });
 
         const legendExpand = new Expand({
           content: legend.domNode,
           view,
-          expanded: false,
+          expanded: true,
+          expandIconClass: "custom-legend-icon",
         });
-
-       
-        
-
         // Adding a third custom zoom button
         const customZoomButton = document.createElement("div");
         customZoomButton.innerHTML = "🏠";
@@ -139,6 +141,8 @@
           "esri-widget--icon",
           "esri-zoom__custom-button"
         );
+
+       
 
         customZoomButton.addEventListener("click", () => {
           view.goTo({ center: [-110, 68.027], zoom: 4.5 });
@@ -250,10 +254,7 @@
               }
               return true;
             });
-            console.log(latitude);
-            console.log(longitude);
             setKey((prevKey) => uniqueKey);
-            console.log(uniqueKey);
             setTerritory((prevTerritory) => territory);
             setModalIsOpen(true);
             if (territory == null) {
@@ -272,16 +273,24 @@
             featureLayer.visible = false;
           }
 
+          featureLayer.featureReduction = {
+            type: "cluster",
+          };
+
+
           map.add(featureLayer);
         });
 
         view.ui.add(layerListExpand, "top-left");
-        view.ui.add(legendExpand, "top-left");
+        view.ui.add(legendExpand, "top-right");
 
         const liveWeatherDataLayer = new GraphicsLayer({
           title: "Live Weather Data",
+          featureReduction: {
+            type: "cluster",
+          },
         });
-        map.add(liveWeatherDataLayer);
+        
 
         Object.keys(yukonCoordinates).forEach((key) => {
           createCityGraphic(
@@ -305,6 +314,7 @@
             liveWeatherDataLayer
           );
         });
+        map.add(liveWeatherDataLayer);
       }
     );
   }
