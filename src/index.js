@@ -26,6 +26,7 @@ ReactDOM.render(
         <Route path="/transportation" element={<Transportation />} exact />
         <Route path="/observation" element={<Observation />} exact />
         <Route path="/login" element={<Login />} exact />
+        <Route path="/map" element={<Map />} exact />
       </Routes>
       <Footer />
     </Router>
