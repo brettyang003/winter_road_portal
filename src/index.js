@@ -13,11 +13,20 @@ import About from "./pages/About";
 import Transportation from "./pages/Transportation";
 import Observation from "./pages/Observation";
 import Login from "./pages/Login/Login.js";
-import Map from "./components/Map/Map.jsx"
+import Map from "./components/Map/Map.jsx";
+
+/**
+ * Entry point of the React application.
+ * Renders the application with routing support.
+ */
 ReactDOM.render(
   <div>
+    {/* Set up router for client-side routing */}
     <Router>
+      {/* Render global navigation bar */}
       <NavigationBar />
+
+      {/* Define routes of all the components */}
       <Routes>
         <Route path="/" element={<Home />} exact />
         <Route path="/projects" element={<Projects />} exact />
@@ -28,8 +37,11 @@ ReactDOM.render(
         <Route path="/login" element={<Login />} exact />
         <Route path="/map" element={<Map />} exact />
       </Routes>
+
+      {/* Render global footer */}
       <Footer />
     </Router>
   </div>,
+  // Mount the root component into the 'root' element in the HTML
   document.getElementById("root")
 );

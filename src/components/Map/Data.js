@@ -1,3 +1,6 @@
+//Contains all the data required for the map
+
+//Array which stores the index associated with the town in Nunavut when calling the GeoMet API
 export const citiesOfNunavut = {
   22: "Alert",
   10: "Arctic Bay",
@@ -29,6 +32,7 @@ export const citiesOfNunavut = {
   6: "Whale Cove"
 };
 
+//Array which stores the index associated with the town in the Northwest Territories when calling the GeoMet API
 export const citiesOfNorthwestTerritories  = {
     26:"Colville Lake",
     22:"Deline",
@@ -60,6 +64,8 @@ export const citiesOfNorthwestTerritories  = {
     23:"Wrigley",
     24:"Yellowknife",
 }
+
+//Array which stores the index associated with the town in Yukon when calling the GeoMet API
 export const citiesOfYukon = {
     15:"Beaver Creek",
     7:"Burwash Landing",
@@ -80,6 +86,7 @@ export const citiesOfYukon = {
     16:"Whitehorse",
 }
 
+//ArcGIS map layers
 export const mapLinks = [
   "https://services1.arcgis.com/9NvE8jKNWWlDGsUJ/arcgis/rest/services/VLi_Web_Map_WFL1/FeatureServer/0",
   "https://services1.arcgis.com/9NvE8jKNWWlDGsUJ/arcgis/rest/services/VLi_Web_Map_WFL1/FeatureServer/1",
@@ -111,6 +118,8 @@ export const mapLinks = [
   "https://services1.arcgis.com/9NvE8jKNWWlDGsUJ/arcgis/rest/services/VLi_Web_Map_WFL1/FeatureServer/28",
 ];
 
+
+//Coordinates of all the towns in NW. The indices are refer to the indices in the above NW array. 
 export const northWestCoordinates = {
   //1: [62.4112, -114.3084],
   2: [60.5547, -116.1472],
@@ -140,6 +149,7 @@ export const northWestCoordinates = {
   30: [68.3609, -133.7297],
 };
 
+//Coordinates of all the towns in Nunavut. The indices are refer to the indices in the above Nunavut array. 
 export const nunavutCoordinates = {
   1: [73.033333, -84.55],
   2: [64.2333, -76.5417],
@@ -171,6 +181,7 @@ export const nunavutCoordinates = {
   29: [56.533333, -79.233333],
 };
 
+//Coordinates of all the towns in Yukon. The indices are refer to the indices in the above Yukon array. 
 export const yukonCoordinates = {
   1: [61.2639299, -138.7444599],
   2: [60.1658333, -134.7058333],
