@@ -27,7 +27,7 @@
      */
     useEffect(() => {
       loadData(weatherData, MapElement);
-    }, []);
+    });
 
     /**
      * Function to close the modal.
