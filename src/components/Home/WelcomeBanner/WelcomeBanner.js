@@ -15,7 +15,7 @@ const WelcomeBanner = () =>{
               Welcome to the Winter Road and Trail Data Information Portal
             </h2>
             <p className="welcomeText">
-              The Winter Road and Trail Data Information Portal (WRTDIP)
+              The Winter Road Data Information Portal (WRDIP)
               provides an interactive map with northern climate data,
               transportation networks, and social aspects of the winter road and
               trail networks in Canada's Territorial North. The aim of this
