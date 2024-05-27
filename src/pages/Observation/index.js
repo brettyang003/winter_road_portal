@@ -8,7 +8,7 @@ function Observation() {
     {
       id: 1,
       image: ObservationFirst,
-      title: "Winter Road and Trail Watch",
+      title: "Winter Road Watch",
       content: "Feel free to export the data to Excel format ",
       bgColor: "white",
     },

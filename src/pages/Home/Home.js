@@ -29,7 +29,7 @@ function Home() {
     {
       id: 1,
       image: firstBanner,
-      title: "Climate Change Impacts on Winter Roads and Trails",
+      title: "Climate Change Impacts on Winter Roads",
       content:
         "Winter road networks are critical land transportation for remote Northern communities who rely on these networks for receiving essential goods and services during winter season. The public and private transportation sectors also rely on winter road networks for their operations. A warming climate has created a shorter winter road season, unreliable road conditions, and safety concerns. ",
       bgColor: "white",
@@ -59,7 +59,7 @@ function Home() {
       image: firstfeatures,
       title: "Interactive Map",
       content:
-        "Where are winter roads and trails? How are winter roads affected by climate change? Our interactive map will allow you to explore Northern transportation networks, climate change impact assessment data, and socio-economic information. ",
+        "Where are winter roads? How are winter roads affected by climate change? Our interactive map will allow you to explore Northern transportation networks, climate change impact assessment data, and socio-economic information. ",
       bgColor: "white",
     },
     {
@@ -73,9 +73,9 @@ function Home() {
     {
       id: 3,
       image: thirdFeatures,
-      title: "Winter Road and Trail Watch",
+      title: "Winter Road Watch",
       content:
-        "Our portal is also linked to the Winter Road and Trail Watch app that is a monitoring tool for tracking changes on the winter road and trail conditions.",
+        "Our portal is also linked to the Winter Road Watch app that is a monitoring tool for tracking changes on the winter road conditions.",
       bgColor: "white",
     },
     {

@@ -12,15 +12,15 @@ const WelcomeBanner = () =>{
         <Row>
           <Col xs lg="4" className="text-center my-auto">
             <h2 className="welcomeTitle">
-              Welcome to the Winter Road and Trail Data Information Portal
+              Welcome to the Winter Road Data Information Portal
             </h2>
             <p className="welcomeText">
               The Winter Road Data Information Portal (WRDIP)
               provides an interactive map with northern climate data,
-              transportation networks, and social aspects of the winter road and
-              trail networks in Canada's Territorial North. The aim of this
+              transportation networks, and social aspects of the winter road
+              networks in Canada's Territorial North. The aim of this
               portal is to support decision-making and policy prioritization on
-              the management of winter roads and trails that are impacted by
+              the management of winter roads that are impacted by
               climate change.
             </p>
           </Col>
@@ -43,18 +43,18 @@ const WelcomeBanner = () =>{
 //     >
 //       <div className="welcomeBannerTitle">
 //         <Typography style={{ color: "#0E2959" }}>
-//           Welcome to the <br /> Winter Road and Trail Data Information Portal
-//           (WRTDIP)
+//           Welcome to the <br /> Winter Road Data Information Portal
+//           (WRDIP)
 //         </Typography>
 //       </div>
 //       <div className="welcomeBannerText">
 //         <Typography style={{ color: "#0E2959" }}>
-//           The Winter Road and Trail Data Information Portal (WRTDIP) provides an
+//           The Winter Road Data Information Portal (WRDIP) provides an
 //           interactive map with northern climate data, transportation networks,
-//           and social aspects of the winter road and trail networks in Canada's
+//           and social aspects of the winter road networks in Canada's
 //           Territorial North. The aim of this portal is to support
 //           decision-making and policy prioritization on the management of winter
-//           roads and trails that are impacted by climate change.
+//           roads that are impacted by climate change.
 //         </Typography>
 //       </div>
 //     </div>

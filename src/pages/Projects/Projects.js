@@ -10,7 +10,7 @@ function Projects() {
     {
       id: 1,
       image: ProjectFirst,
-      title: "Winter Road and Trail Watch",
+      title: "Winter Road Watch",
       content:
         "We invite all the citizen scientists in the North to contribute to our real-time science research toward climate change adaptation. More details coming soon!",
       bgColor: "white",
@@ -19,9 +19,9 @@ function Projects() {
     {
       id: 2,
       image: ProjectSecond,
-      title: "Winter Road and Trail Community Online Survey",
+      title: "Winter Road User Community Online Survey",
       content:
-        "We will invite the Winter Road and Trail Watch observers to complete an online survey about climate change impacts on the winter road and trail networks in the Northwest Territories, Yukon, and Nunavut. More details coming soon!",
+        "We will invite the Winter Road Watch observers to complete an online survey about climate change impacts on the winter road networks in the Northwest Territories. More details coming soon!",
       bgColor: "#F7FAEF",
     },
     {
