@@ -12,10 +12,10 @@ const WelcomeBanner = () =>{
         <Row>
           <Col xs lg="4" className="text-center my-auto">
             <h2 className="welcomeTitle">
-              Welcome to the Winter Road Data Information Portal
+              Welcome to the Winter Road and Mobility Portal
             </h2>
             <p className="welcomeText">
-              The Winter Road Data Information Portal (WRDIP)
+              The Winter Road and Mobility Portal (WRaMP)
               provides an interactive map with northern climate data,
               transportation networks, and social aspects of the winter road
               networks in Canada's Territorial North. The aim of this
@@ -43,13 +43,13 @@ const WelcomeBanner = () =>{
 //     >
 //       <div className="welcomeBannerTitle">
 //         <Typography style={{ color: "#0E2959" }}>
-//           Welcome to the <br /> Winter Road Data Information Portal
-//           (WRDIP)
+//           Welcome to the <br /> Winter Road and Mobility Portal
+//           (WRaMP)
 //         </Typography>
 //       </div>
 //       <div className="welcomeBannerText">
 //         <Typography style={{ color: "#0E2959" }}>
-//           The Winter Road Data Information Portal (WRDIP) provides an
+//           The Winter Road and Mobility Portal (WRaMP) provides an
 //           interactive map with northern climate data, transportation networks,
 //           and social aspects of the winter road networks in Canada's
 //           Territorial North. The aim of this portal is to support
